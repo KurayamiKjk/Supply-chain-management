@@ -1,0 +1,9 @@
+You need to import database data to database by open SQL Server Management Studio 
+-click import Data-tier Application...
+-open  Supply chain management WF\Database\SupplyChainManagement.bacpac 
+-rename database to "SupplyChainManagement" 
+-click enter in finist 
+
+
+username: thuyenhuynh
+password: yaminokonjiki
