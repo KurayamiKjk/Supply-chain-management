@@ -3,6 +3,7 @@ You need to import database data to database by open SQL Server Management Studi
 -open  Supply chain management WF\Database\SupplyChainManagement.bacpac 
 -rename database to "SupplyChainManagement" 
 -click enter in finist 
+You also need to change the connectionString in App.config(Winform) and Web.config(WebForm)
 
 
 username: thuyenhuynh
