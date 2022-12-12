@@ -18,7 +18,7 @@ namespace Supply_chain_management_WF
         {
             InitializeComponent();
         }
-        SqlConnection con = new SqlConnection(@"Data Source=KURAYAMIPC;Initial Catalog=SupplyChainManagement;Integrated Security=True");
+        private SqlConnection con = DBConnection.GetConnection();
         
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
