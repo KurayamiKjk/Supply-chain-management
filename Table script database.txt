@@ -1,0 +1,97 @@
+CREATE TABLE [dbo].[Agent] (
+    [AgentId]       VARCHAR (50)    NOT NULL,
+    [Id]            INT             IDENTITY (2000, 1) NOT NULL,
+    [AgentName]     NVARCHAR (128)  NOT NULL,
+    [AgentNumber]   INT             NOT NULL,
+    [AgentEmail]    VARCHAR (128)   NOT NULL,
+    [AgentAddress]  NVARCHAR (128)  NULL,
+    [AgentJoinDate] DATETIME        DEFAULT (getdate()) NOT NULL,
+    [TotalRevenue]  DECIMAL (18, 3) DEFAULT ((0)) NULL,
+    [AgentStatus]   INT             NOT NULL,
+    PRIMARY KEY CLUSTERED ([AgentId] ASC)
+);
+
+CREATE TABLE [dbo].[Employees] (
+    [Id]            INT            NOT NULL,
+    [UserName]      NVARCHAR (128) NOT NULL,
+    [UserPassword]  NVARCHAR (128) NOT NULL,
+    [UserFirstName] NVARCHAR (128) NOT NULL,
+    [UserLastName]  NVARCHAR (128) NOT NULL,
+    [UserPhone]     INT            NULL,
+    [UserAddress]   NVARCHAR (128) NULL,
+    [UserSalary]    FLOAT (53)     CONSTRAINT [DF_Employees_UserSalary] DEFAULT ((0)) NULL
+);
+
+CREATE TABLE [dbo].[History] (
+    [Id]            INT            IDENTITY (5000, 1) NOT NULL,
+    [SubjectId]     VARCHAR (50)   NOT NULL,
+    [SubjectName]   NVARCHAR (128) NOT NULL,
+    [Activity]      VARCHAR (50)   NULL,
+    [OldValue]      NVARCHAR (128) NULL,
+    [NewValue]      NVARCHAR (128) NULL,
+    [PreUpdateDate] DATETIME       NULL,
+    [NewUpdateDate] DATETIME       DEFAULT (getdate()) NOT NULL,
+    [EditedBy]      NVARCHAR (128) NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Order] (
+    [OrderId]       VARCHAR (50)    NOT NULL,
+    [Id]            INT             IDENTITY (3000, 1) NOT NULL,
+    [AgentId]       VARCHAR (50)    NOT NULL,
+    [CreateDate]    DATETIME        DEFAULT (getdate()) NOT NULL,
+    [TotalPrice]    DECIMAL (18, 3) DEFAULT ((0)) NOT NULL,
+    [PaymentStatus] INT             NOT NULL,
+    [PayDate]       DATETIME        NULL,
+    [OrderStatus]   INT             NOT NULL,
+    PRIMARY KEY CLUSTERED ([OrderId] ASC)
+);
+
+CREATE TABLE [dbo].[OrderDetail] (
+    [Id]           INT             IDENTITY (4000, 1) NOT NULL,
+    [OrderId]      VARCHAR (50)    NOT NULL,
+    [ProductId]    NVARCHAR (20)   NOT NULL,
+    [Quantity]     INT             NULL,
+    [PriceEach]    DECIMAL (18, 3) NULL,
+    [PurchaseDate] DATETIME        NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Product] (
+    [Id]                INT             IDENTITY (1000, 1) NOT NULL,
+    [ProductId]         NVARCHAR (20)   NOT NULL,
+    [ProductName]       NVARCHAR (128)  NOT NULL,
+    [ProductUnit]       NVARCHAR (128)  NOT NULL,
+    [ProductQuantity]   INT             NULL,
+    [ProductDocument]   NVARCHAR (128)  NULL,
+    [ProductUnitPrice]  DECIMAL (18, 3) NULL,
+    [TotalCost]         DECIMAL (18, 3) NULL,
+    [ProductCreateDate] DATETIME        CONSTRAINT [DF__tmp_ms_xx__Produ__31EC6D26] DEFAULT (getdate()) NOT NULL,
+    [ProductStatus]     INT             CONSTRAINT [DF__tmp_ms_xx__Produ__32E0915F] DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK__tmp_ms_x__B40CC6CD15285A41] PRIMARY KEY CLUSTERED ([ProductId] ASC)
+);
+
+CREATE TABLE [dbo].[Revenue] (
+    [Id]           INT             IDENTITY (1, 1) NOT NULL,
+    [Revenue]      DECIMAL (18, 3) NOT NULL,
+    [TotalRevenue] DECIMAL (18, 3) NOT NULL,
+    [UpdateDate]   DATETIME        DEFAULT (getdate()) NOT NULL,
+    [SoldProduct]  INT             NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[WebOrder] (
+    [OrderId]       VARCHAR (50)    NOT NULL,
+    [Id]            INT             IDENTITY (6000, 1) NOT NULL,
+    [AgentId]       VARCHAR (50)    NOT NULL,
+    [AgentName]     NVARCHAR (128)  NOT NULL,
+    [AgentNumber]   INT             NOT NULL,
+    [AgentEmail]    VARCHAR (128)   NOT NULL,
+    [AgentAddress]  NVARCHAR (128)  NULL,
+    [CreateDate]    DATETIME        DEFAULT (getdate()) NOT NULL,
+    [TotalPrice]    DECIMAL (18, 3) DEFAULT ((0)) NOT NULL,
+    [PaymentStatus] INT             DEFAULT ((0)) NOT NULL,
+    [PayDate]       DATETIME        NULL,
+    [OrderStatus]   INT             DEFAULT ((0)) NOT NULL,
+    PRIMARY KEY CLUSTERED ([OrderId] ASC)
+);
