@@ -1,0 +1,113 @@
+﻿@model Supply_chain_management_WebApp.Models.WebOrder
+@{
+    Layout = null;
+}
+@using Supply_chain_management_WebApp.Controllers
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="payment.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <br />
+    <br />
+    <main class="page payment-page">
+        <section class="payment-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2>Payment</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis
+                        vitae leo.
+                    </p>
+                </div>
+                @using (Html.BeginForm("CreateOrder", "Cart", FormMethod.Post))
+                {
+                    <div>
+                        <div class="products">
+                            <h3 class="title">Checkout</h3>
+                            <table class="table table-striped" cellpadding="2" cellspacing="2" border="1">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Product Id</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Sub total</th>
+                                    <th>Option</th>
+                                </tr>
+                                @{
+                                    decimal totalPrice = 0;
+                                }
+                                @if (HttpContext.Current.Session["cart"] != null)
+                                {
+                                    foreach (Item item in (List<Item>)Session["cart"])
+                                    {
+                                        <tr>
+                                            <td>@item.Pr.Id</td>
+                                            <td>@item.Pr.ProductId</td>
+                                            <td>@item.Pr.ProductName</td>
+                                            <td>@item.Pr.ProductUnitPrice</td>
+                                            <td>@Html.TextBox("quantity",item.Quantity, new { @type = "number" })</td>
+                                            @{
+                                                decimal subTotal = Convert.ToDecimal(item.Pr.ProductUnitPrice) * Convert.ToInt32(item.Quantity);
+                                            }
+                                            <td>@(subTotal) $</td>
+                                            <td>@Html.ActionLink("Remove", "Remove", "Cart", new { id = item.Pr.Id }, null)</td>
+                                            @{
+                                                totalPrice += subTotal;
+                                            }
+                                        </tr>
+                                    }
+                                }
+                                <tr></tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td align="center" colspan="3">Total Price : @(totalPrice) $</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="card-details">
+                            <h3 class="title">Customer Information</h3>
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    @Html.Label("Full Name")
+                                    @Html.TextBoxFor(m => m.AgentName, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    @Html.Label("Email")
+                                    @Html.TextBoxFor(m => m.AgentEmail, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-sm-8">
+                                    @Html.Label("Address")
+                                    @Html.TextBoxFor(m => m.AgentAddress, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    @Html.Label("Phone Number")
+                                    @Html.TextBoxFor(m => m.AgentNumber, new { @class = "form-control"})
+                                </div>
+                                <div class="form-group col-sm-3">
+                                    @Html.ActionLink("Back to shopping", "Index", "Product")
+                                </div>
+                                <div class="form-group col-sm-7">
+                                    <input type="submit" class="btn btn-primary btn-block" value="Order Now !" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+

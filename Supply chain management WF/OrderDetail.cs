@@ -52,6 +52,19 @@ namespace Supply_chain_management_WF
                 con.Close();
             }
         }
+        public void deleteOrder(string id)
+        {
+            con.Open();
+            SqlCommand comOrder = new SqlCommand(@"DELETE FROM [dbo].[Order] WHERE OrderId = '" + id + "';", con);
+            SqlCommand comOrderDetail = new SqlCommand(@"DELETE FROM [dbo].[OrderDetail] WHERE OrderId = '" + id + "';", con);
+            int isExecute = comOrder.ExecuteNonQuery();
+            int isExecute2 = comOrderDetail.ExecuteNonQuery();
+            if (isExecute == 0 || isExecute2 == 0)
+                MessageBox.Show("Delete failed, there was an error!");
+            else
+                MessageBox.Show("Delete order successed!");
+            con.Close();
+        }
         public string reqProductId;
         public int reqProductQuantity;
         public int stockProductQuantity;
@@ -101,6 +114,14 @@ namespace Supply_chain_management_WF
                     if (Convert.ToInt32(dr[5]) == 0)
                     {
                         unpaidRadio.Checked = true;
+                    }
+                    if (Convert.ToInt32(dr[7]) == 0)
+                    {
+                        orderUnconfrimBtn.Enabled = false;
+                    }
+                    if (Convert.ToInt32(dr[7]) == 1)
+                    {
+                        orderConfirmBtn.Enabled = false;  
                     }
                     else
                     {
@@ -222,7 +243,23 @@ namespace Supply_chain_management_WF
 
         private void deleteOrderBtn_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Are you sure to delete this order ?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                deleteOrder(orderId);
+            }
+            updateData.refreshNewData();
+            this.Close();
+        }
 
+        private void orderUnconfrimBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Confirm this order ?", "Confirm order", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int isUnconfirm = 0;
+                updateData.updateOrderStatus(orderId, isUnconfirm);
+                updateData.refreshNewData();
+                this.Close();
+            }
         }
     }
 }

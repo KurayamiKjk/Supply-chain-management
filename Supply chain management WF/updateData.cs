@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace Supply_chain_management_WF
 {
@@ -52,6 +53,13 @@ namespace Supply_chain_management_WF
         {
             Product product = new Product();
             product.ReloadForm();
+        }
+        public static void updateRevenue()
+        {
+            con.Open();
+            SqlCommand cmd = new SqlCommand("INSERT INTO[dbo].[Revenue]([Revenue],[TotalRevenue],[SoldProduct]) VALUES((SELECT SUM(TotalPrice) FROM[dbo].[Order] WHERE OrderStatus = 1 AND MONTH([CreateDate]) = DATEPART(MONTH,GETDATE())),(SELECT SUM(Revenue) FROM[dbo].[Revenue]), (SELECT SUM(Quantity) FROM[dbo].[OrderDetail] JOIN[dbo].[Order] ON OrderDetail.OrderId = [dbo].[Order].OrderId WHERE[dbo].[Order].OrderStatus = 1))", con);
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
     }
 }

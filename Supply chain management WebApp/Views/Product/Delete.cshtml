@@ -1,0 +1,96 @@
+﻿@model Supply_chain_management_WebApp.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDocument)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDocument)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductUnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductUnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

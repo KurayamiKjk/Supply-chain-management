@@ -324,6 +324,7 @@
             this.orderUnconfrimBtn.TabIndex = 3;
             this.orderUnconfrimBtn.Text = "Unconfirm";
             this.orderUnconfrimBtn.UseVisualStyleBackColor = true;
+            this.orderUnconfrimBtn.Click += new System.EventHandler(this.orderUnconfrimBtn_Click);
             // 
             // deleteOrderBtn
             // 

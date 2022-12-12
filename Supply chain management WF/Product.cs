@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Data.Common;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Supply_chain_management_WF
 {
@@ -32,8 +33,7 @@ namespace Supply_chain_management_WF
         }
         public void loaddata()
         {
-            //do what you do in load data in order to update data in datagrid
-            
+           
             productView.DataSource = getData.getProductData();
             this.productView.Columns["ProductUnit"].Visible = false; //col 4
             this.productView.Columns["ProductQuantity"].Visible = false; // col 5
@@ -41,7 +41,6 @@ namespace Supply_chain_management_WF
             this.productView.Columns["ProductDocument"].Visible = false; // col 6
             this.productView.Columns["TotalCost"].Visible = false; // col 8
 
-            // Display product for billing page
 
             buyProductView.DataSource = getData.getProductData();
             orderView.DataSource = getData.getOrderData();
@@ -66,12 +65,55 @@ namespace Supply_chain_management_WF
         {
             orderHistoryView.DataSource = getData.getOrderHistoryData();
             this.orderHistoryView.Columns["Id"].Visible = false;
+            this.orderHistoryView.Columns["EditedBy"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+        public void loadAgentHistory()
+        {
+            agentHistoryView.DataSource = getData.getAgentHistoryData();
+            this.agentHistoryView.Columns["Id"].Visible = false;
+            this.agentHistoryView.Columns["EditedBy"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+        public void loadProductHistory()
+        {
+            productHistoryView.DataSource = getData.getProductHistoryData();
+            this.productHistoryView.Columns["Id"].Visible = false;
+            this.productHistoryView.Columns["EditedBy"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
         public void loadAgentNameComboBox()
         {
             selectedAgentId.DataSource = getData.getAgentData();
             selectedAgentId.ValueMember = "AgentId";
             selectedAgentId.DisplayMember= "AgentId";
+        }
+        public void loadTopAgent()
+        {
+            topAgentView.DataSource = getData.getTopAgentData();
+            this.topAgentView.Columns["AgentId"].HeaderCell.Value = "Id";
+            this.topAgentView.Columns["AgentName"].HeaderCell.Value = "Name";
+            this.topAgentView.Columns["AgentName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            this.topAgentView.Columns["TotalRevenue"].HeaderCell.Value = "Revenue";
+            this.topAgentView.Columns["Id"].Visible = false;
+            this.topAgentView.Columns["AgentNumber"].Visible = false;
+            this.topAgentView.Columns["AgentEmail"].Visible = false;
+            this.topAgentView.Columns["AgentJoinDate"].Visible = false;
+            this.topAgentView.Columns["AgentStatus"].Visible = false;
+
+        }
+        public void loadTopSellProduct()
+        {
+            topProductView.DataSource = getData.getTopProductData();
+            this.topProductView.Columns["ProductId"].Visible = false;
+            this.topProductView.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        }
+        public void loadRevenue()
+        {
+            foreach (DataRow row in getData.getRevenue().Rows)
+            {
+                monthRevenue.Text = row[0].ToString() + "$";
+                productSold.Text = row[2].ToString() + " Produsts";
+                day.Text = "Latest updade : " + row[1].ToString();
+            }
+
         }
         public void openChangeSection() 
         {
@@ -81,6 +123,7 @@ namespace Supply_chain_management_WF
             productUnitPriceInfo.Enabled = true;
             productDescriptionInfo.Enabled = true;
             saveChangeBtn.Visible = true;
+            cancleBtn.Visible = true;
             availableRadioInfo.Enabled = true;
             unavailableRadioInfo.Enabled = true;
         }
@@ -105,6 +148,39 @@ namespace Supply_chain_management_WF
             agentUnavailableInput.Enabled = false;
             saveCreateAgent.Visible = false;
         }
+        public void searchProductById(string id)
+        {
+            string querry = "SELECT * FROM [dbo].[Product] where ProductId LIKE '" + id + "%'";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(querry, con);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            productView.DataSource = dataTable;
+        }
+
+        public void searchProductByName(string name)
+        {
+            string querry = "SELECT * FROM [dbo].[Product] where ProductName LIKE '%" + name + "%'";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(querry, con);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            productView.DataSource = dataTable;
+        }
+        public void searchProductByDate(string date)
+        {
+            string querry = "SELECT * FROM [dbo].[Product] where CONVERT(date, ProductCreateDate) = '"+date+"'";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(querry, con);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            productView.DataSource = dataTable;
+        }
+        public void searchProductByStatus(int status)
+        {
+            string querry = "SELECT * FROM [dbo].[Product] where ProductStatus = '" + status + "'";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(querry, con);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            productView.DataSource = dataTable;
+        }
         public void searchAgentById(string id) 
         {
             string querry = "SELECT * FROM Agent where AgentId LIKE '"+id+"%'";
@@ -122,6 +198,14 @@ namespace Supply_chain_management_WF
             dataAdapter.Fill(dataTable);
             agentsView.DataSource = dataTable;
         }
+        public void searchAgentByStatus(int status)
+        {
+            string querry = "SELECT * FROM [dbo].[Agent] where AgentStatus = '" + status + "'";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(querry, con);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            agentsView.DataSource = dataTable;
+        }
         public void searchOrderById(string id)
         {
             string querry = "SELECT * FROM [dbo].[Order] where OrderId LIKE '" + id + "%'";
@@ -133,6 +217,14 @@ namespace Supply_chain_management_WF
         public void searchOrderByAgentId(string id)
         {
             string querry = "SELECT * FROM [dbo].[Order] where AgentId LIKE '" + id + "%'";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(querry, con);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+            orderView.DataSource = dataTable;
+        }
+        public void searchOrderStatus(int status)
+        {
+            string querry = "SELECT * FROM [dbo].[Order] where Orderstatus = '" + status + "'";
             SqlDataAdapter dataAdapter = new SqlDataAdapter(querry, con);
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);
@@ -178,11 +270,18 @@ namespace Supply_chain_management_WF
             loadAgents();
             loadAgentNameComboBox();
             loadOrderHistory();
+            loadAgentHistory();
+            loadProductHistory();
+            loadTopAgent();
+            loadTopSellProduct();
+            loadRevenue();
+            updateData.updateRevenue();
         }
             private void Main_Load(object sender, EventArgs e)
         {
             statusDropDown.SelectedIndex = 0;
             agentStatusSearch.SelectedIndex = 0;
+            orderStatusSearch.SelectedIndex = 0;
             ReloadForm();
             con.Close();
         }
@@ -213,9 +312,12 @@ namespace Supply_chain_management_WF
 
         private void addProductBtn_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
             AddProduct addProduct = new AddProduct();
-            addProduct.Show();
+            //addProduct.Show();
+            addProduct.ShowDialog();
+            ReloadForm();
+            addProduct.Dispose();
 
         }
 
@@ -284,11 +386,6 @@ namespace Supply_chain_management_WF
 
         }
 
-        private void productNameInfo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void deleteProductBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure to delete this product ?", "Confirm delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -301,6 +398,7 @@ namespace Supply_chain_management_WF
                 else
                     MessageBox.Show("Delete product successed!");
             }
+            updateHistory.updateProductHistory(productIdInfo.Text, "Product", "Delete", "","", createDateInfo.Value.Date.ToString("MM-dd-yyyy HH:mm:ss"), "");
             con.Close();
             loaddata();
         }
@@ -308,10 +406,6 @@ namespace Supply_chain_management_WF
         private void changeProductBtn_Click(object sender, EventArgs e)
         {
             openChangeSection();
-        }
-        private void saveChangeBtn_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void productQuantityInfo_ValueChanged(object sender, EventArgs e)
@@ -340,11 +434,6 @@ namespace Supply_chain_management_WF
             }
         }
 
-        private void availableRadioInfo_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void productNavBtn_Click(object sender, EventArgs e)
         {
             pageControl.SelectedTab = productPage;
@@ -352,15 +441,10 @@ namespace Supply_chain_management_WF
 
         private void productCodeInput_TextChanged(object sender, EventArgs e)
         {
-
+            //searchProductById(productCodeInput.Text);
         }
 
         private void productView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void productView_Click(object sender, EventArgs e)
         {
 
         }
@@ -459,7 +543,7 @@ namespace Supply_chain_management_WF
                 loadAgents();
                 updateHistory.updateAgentHistory(agentIdInput.Text,"agent","Create","",agentNameInput.Text, "","");
                 closeCreateAgentSection();
-                
+                updateHistory.updateAgentHistory("0", "Agent", "Create", "", "agentNameInput.Text", "", "");
             }
             else
             {
@@ -512,10 +596,18 @@ namespace Supply_chain_management_WF
                 }
             }
         }
-
+        public int agentStatus;
         private void agentStatusSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (agentStatusSearch.SelectedItem == "Active")
+            {
+                agentStatus = 1;
+            }
+            if (agentStatusSearch.SelectedItem == "Diactive")
+            {
+                agentStatus = 0;
+            }
+            searchAgentByStatus(agentStatus);
         }
 
         private void agentStatusSearch_Click(object sender, EventArgs e)
@@ -754,7 +846,7 @@ namespace Supply_chain_management_WF
         private void orderView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             string getId = "";
-            
+
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.orderView.Rows[e.RowIndex];
@@ -764,6 +856,72 @@ namespace Supply_chain_management_WF
             orderDetail.ShowDialog();
             ReloadForm();
             orderDetail.Dispose();
+        }
+
+        private void orderIdSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+        }
+        public int orderstatus;
+        private void orderStatusSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (orderStatusSearch.SelectedItem == "Confirmed")
+            {
+                orderstatus = 1;
+            }
+            if (orderStatusSearch.SelectedItem == "Unconfirm")
+            {
+                orderstatus = 0;
+            }
+            searchOrderStatus(orderstatus);
+        }
+
+        private void cancleBtn_Click(object sender, EventArgs e)
+        {
+            closeChangeSection();
+        }
+
+        private void productNameInput_TextChanged(object sender, EventArgs e)
+        {
+            //searchProductByName(productNameInput.Text);
+        }
+        public int productStatus;
+        private void statusDropDown_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (statusDropDown.SelectedItem == "Available")
+            {
+                productStatus = 1;
+            }
+            if (statusDropDown.SelectedItem == "Unavailable")
+            {
+                productStatus = 0;
+            }
+            //searchProductByStatus(productStatus);
+        }
+        private void productSearchByDate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            productDateInput.Text = productSearchByDate.SelectionRange.Start.ToShortDateString();
+        }
+
+        private void productDateInput_TextChanged(object sender, EventArgs e)
+        {
+            if (productDateInput.Text != string.Empty)
+            {
+                searchProductByDate(productDateInput.Text);
+            }
+            else
+            {
+                loaddata();
+            }
+
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Exit the app ?", "Exit", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Product));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.exitBtn = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.HistoryFormBtn = new System.Windows.Forms.Button();
             this.BillingFormBtn = new System.Windows.Forms.Button();
             this.productNavBtn = new System.Windows.Forms.Button();
@@ -38,11 +41,28 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pageControl = new System.Windows.Forms.TabControl();
             this.homePage = new System.Windows.Forms.TabPage();
+            this.panel19 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.productSold = new System.Windows.Forms.Label();
+            this.monthRevenue = new System.Windows.Forms.Label();
+            this.day = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.panel22 = new System.Windows.Forms.Panel();
+            this.topAgentView = new System.Windows.Forms.DataGridView();
+            this.panel18 = new System.Windows.Forms.Panel();
+            this.topProductView = new System.Windows.Forms.DataGridView();
             this.productPage = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.label35 = new System.Windows.Forms.Label();
+            this.productDateInput = new System.Windows.Forms.TextBox();
+            this.productSearchByDate = new System.Windows.Forms.MonthCalendar();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label36 = new System.Windows.Forms.Label();
             this.deleteProductBtn = new System.Windows.Forms.Button();
             this.resetProductBtn = new System.Windows.Forms.Button();
             this.addProductBtn = new System.Windows.Forms.Button();
@@ -56,6 +76,7 @@
             this.productNameInput = new System.Windows.Forms.TextBox();
             this.productCodeInput = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cancleBtn = new System.Windows.Forms.Button();
             this.saveChangeBtn = new System.Windows.Forms.Button();
             this.productDescriptionInfo = new System.Windows.Forms.TextBox();
             this.unavailableRadioInfo = new System.Windows.Forms.RadioButton();
@@ -107,7 +128,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.billingPage = new System.Windows.Forms.TabPage();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.orderStatusSearch = new System.Windows.Forms.ComboBox();
             this.orderAgentIdSearch = new System.Windows.Forms.TextBox();
             this.orderIdSearch = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -144,14 +165,27 @@
             this.selectedAgentAddress = new System.Windows.Forms.TextBox();
             this.historyPage = new System.Windows.Forms.TabPage();
             this.panel17 = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
             this.orderHistoryView = new System.Windows.Forms.DataGridView();
             this.panel16 = new System.Windows.Forms.Panel();
+            this.label32 = new System.Windows.Forms.Label();
             this.agentHistoryView = new System.Windows.Forms.DataGridView();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.label31 = new System.Windows.Forms.Label();
             this.productHistoryView = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pageControl.SuspendLayout();
+            this.homePage.SuspendLayout();
+            this.panel19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel22.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topAgentView)).BeginInit();
+            this.panel18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.topProductView)).BeginInit();
             this.productPage.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -187,6 +221,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.exitBtn);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.HistoryFormBtn);
             this.panel1.Controls.Add(this.BillingFormBtn);
             this.panel1.Controls.Add(this.productNavBtn);
@@ -196,6 +232,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(233, 720);
             this.panel1.TabIndex = 0;
+            // 
+            // exitBtn
+            // 
+            this.exitBtn.Location = new System.Drawing.Point(-3, 601);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(233, 45);
+            this.exitBtn.TabIndex = 7;
+            this.exitBtn.Text = "Exit";
+            this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(230, 189);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // HistoryFormBtn
             // 
@@ -267,6 +323,11 @@
             // 
             // homePage
             // 
+            this.homePage.Controls.Add(this.panel19);
+            this.homePage.Controls.Add(this.label29);
+            this.homePage.Controls.Add(this.label28);
+            this.homePage.Controls.Add(this.panel22);
+            this.homePage.Controls.Add(this.panel18);
             this.homePage.Location = new System.Drawing.Point(4, 24);
             this.homePage.Name = "homePage";
             this.homePage.Padding = new System.Windows.Forms.Padding(3);
@@ -274,6 +335,150 @@
             this.homePage.TabIndex = 0;
             this.homePage.Text = "Home";
             this.homePage.UseVisualStyleBackColor = true;
+            // 
+            // panel19
+            // 
+            this.panel19.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel19.Controls.Add(this.pictureBox2);
+            this.panel19.Controls.Add(this.productSold);
+            this.panel19.Controls.Add(this.monthRevenue);
+            this.panel19.Controls.Add(this.day);
+            this.panel19.Controls.Add(this.label34);
+            this.panel19.Controls.Add(this.label33);
+            this.panel19.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel19.Location = new System.Drawing.Point(22, 6);
+            this.panel19.Name = "panel19";
+            this.panel19.Size = new System.Drawing.Size(947, 424);
+            this.panel19.TabIndex = 7;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Supply_chain_management_WF.Properties.Resources.logistics_supply_chain;
+            this.pictureBox2.Location = new System.Drawing.Point(23, 25);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(589, 375);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
+            // productSold
+            // 
+            this.productSold.AutoSize = true;
+            this.productSold.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.productSold.ForeColor = System.Drawing.Color.DarkOrange;
+            this.productSold.Location = new System.Drawing.Point(652, 335);
+            this.productSold.Name = "productSold";
+            this.productSold.Size = new System.Drawing.Size(25, 30);
+            this.productSold.TabIndex = 4;
+            this.productSold.Text = "#";
+            // 
+            // monthRevenue
+            // 
+            this.monthRevenue.AutoSize = true;
+            this.monthRevenue.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.monthRevenue.ForeColor = System.Drawing.Color.DarkGreen;
+            this.monthRevenue.Location = new System.Drawing.Point(652, 209);
+            this.monthRevenue.Name = "monthRevenue";
+            this.monthRevenue.Size = new System.Drawing.Size(25, 30);
+            this.monthRevenue.TabIndex = 3;
+            this.monthRevenue.Text = "$";
+            // 
+            // day
+            // 
+            this.day.AutoSize = true;
+            this.day.BackColor = System.Drawing.Color.Transparent;
+            this.day.Font = new System.Drawing.Font("Segoe UI Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.day.ForeColor = System.Drawing.Color.Blue;
+            this.day.Location = new System.Drawing.Point(618, 46);
+            this.day.Name = "day";
+            this.day.Size = new System.Drawing.Size(68, 32);
+            this.day.TabIndex = 2;
+            this.day.Text = "Date";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.BackColor = System.Drawing.Color.Transparent;
+            this.label34.Font = new System.Drawing.Font("Segoe UI Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label34.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label34.Location = new System.Drawing.Point(618, 274);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(165, 32);
+            this.label34.TabIndex = 1;
+            this.label34.Text = "Product Sold";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Font = new System.Drawing.Font("Segoe UI Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label33.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label33.Location = new System.Drawing.Point(618, 139);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(199, 32);
+            this.label33.TabIndex = 0;
+            this.label33.Text = "Month Revenue";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label29.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label29.Location = new System.Drawing.Point(611, 443);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(261, 32);
+            this.label29.TabIndex = 6;
+            this.label29.Text = "Top selling products :";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label28.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.label28.Location = new System.Drawing.Point(148, 443);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(204, 32);
+            this.label28.TabIndex = 5;
+            this.label28.Text = "Top sales agent :";
+            // 
+            // panel22
+            // 
+            this.panel22.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel22.Controls.Add(this.topAgentView);
+            this.panel22.Location = new System.Drawing.Point(22, 490);
+            this.panel22.Name = "panel22";
+            this.panel22.Size = new System.Drawing.Size(463, 202);
+            this.panel22.TabIndex = 4;
+            // 
+            // topAgentView
+            // 
+            this.topAgentView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.topAgentView.Location = new System.Drawing.Point(0, 0);
+            this.topAgentView.Name = "topAgentView";
+            this.topAgentView.RowTemplate.Height = 25;
+            this.topAgentView.Size = new System.Drawing.Size(463, 202);
+            this.topAgentView.TabIndex = 0;
+            // 
+            // panel18
+            // 
+            this.panel18.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel18.Controls.Add(this.topProductView);
+            this.panel18.Location = new System.Drawing.Point(506, 491);
+            this.panel18.Name = "panel18";
+            this.panel18.Size = new System.Drawing.Size(463, 201);
+            this.panel18.TabIndex = 0;
+            // 
+            // topProductView
+            // 
+            this.topProductView.AllowUserToAddRows = false;
+            this.topProductView.AllowUserToDeleteRows = false;
+            this.topProductView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.topProductView.Location = new System.Drawing.Point(0, -1);
+            this.topProductView.Name = "topProductView";
+            this.topProductView.ReadOnly = true;
+            this.topProductView.RowTemplate.Height = 25;
+            this.topProductView.Size = new System.Drawing.Size(463, 202);
+            this.topProductView.TabIndex = 0;
             // 
             // productPage
             // 
@@ -293,29 +498,62 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Location = new System.Drawing.Point(7, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(977, 103);
             this.panel2.TabIndex = 6;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Supply_chain_management_WF.Properties.Resources.Supply_Chain_Management_SCM;
+            this.pictureBox3.Location = new System.Drawing.Point(226, 6);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(503, 100);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel6.Controls.Add(this.monthCalendar1);
+            this.panel6.Controls.Add(this.label35);
+            this.panel6.Controls.Add(this.productDateInput);
+            this.panel6.Controls.Add(this.productSearchByDate);
             this.panel6.Location = new System.Drawing.Point(697, 119);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(287, 269);
             this.panel6.TabIndex = 10;
             // 
-            // monthCalendar1
+            // label35
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(31, 81);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label35.Location = new System.Drawing.Point(31, 16);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(223, 25);
+            this.label35.TabIndex = 2;
+            this.label35.Text = "Search By Created Date ";
+            // 
+            // productDateInput
+            // 
+            this.productDateInput.Location = new System.Drawing.Point(31, 231);
+            this.productDateInput.Name = "productDateInput";
+            this.productDateInput.Size = new System.Drawing.Size(227, 23);
+            this.productDateInput.TabIndex = 1;
+            this.productDateInput.TextChanged += new System.EventHandler(this.productDateInput_TextChanged);
+            // 
+            // productSearchByDate
+            // 
+            this.productSearchByDate.Location = new System.Drawing.Point(31, 57);
+            this.productSearchByDate.Name = "productSearchByDate";
+            this.productSearchByDate.TabIndex = 0;
+            this.productSearchByDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.productSearchByDate_DateChanged);
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel5.Controls.Add(this.label36);
             this.panel5.Controls.Add(this.deleteProductBtn);
             this.panel5.Controls.Add(this.resetProductBtn);
             this.panel5.Controls.Add(this.addProductBtn);
@@ -324,6 +562,16 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(287, 292);
             this.panel5.TabIndex = 9;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label36.Location = new System.Drawing.Point(109, 36);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(70, 25);
+            this.label36.TabIndex = 4;
+            this.label36.Text = "Action";
             // 
             // deleteProductBtn
             // 
@@ -409,28 +657,32 @@
             // productView
             // 
             this.productView.AllowUserToAddRows = false;
+            this.productView.AllowUserToDeleteRows = false;
             this.productView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.productView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.productView.Location = new System.Drawing.Point(3, 78);
             this.productView.Name = "productView";
+            this.productView.ReadOnly = true;
             this.productView.RowTemplate.Height = 25;
             this.productView.Size = new System.Drawing.Size(667, 307);
             this.productView.TabIndex = 3;
             this.productView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productView_CellClick_1);
             this.productView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productView_CellContentClick);
-            this.productView.Click += new System.EventHandler(this.productView_Click);
+            this.productView.Click += new System.EventHandler(this.label6_Click);
             // 
             // statusDropDown
             // 
+            this.statusDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.statusDropDown.FormattingEnabled = true;
             this.statusDropDown.Items.AddRange(new object[] {
             "Status",
-            "Active",
-            "Diactive"});
+            "Available",
+            "Unavailable"});
             this.statusDropDown.Location = new System.Drawing.Point(437, 34);
             this.statusDropDown.Name = "statusDropDown";
             this.statusDropDown.Size = new System.Drawing.Size(162, 23);
             this.statusDropDown.TabIndex = 2;
+            this.statusDropDown.SelectedIndexChanged += new System.EventHandler(this.statusDropDown_SelectedIndexChanged_1);
             // 
             // productNameInput
             // 
@@ -438,6 +690,7 @@
             this.productNameInput.Name = "productNameInput";
             this.productNameInput.Size = new System.Drawing.Size(162, 23);
             this.productNameInput.TabIndex = 1;
+            this.productNameInput.TextChanged += new System.EventHandler(this.productNameInput_TextChanged);
             // 
             // productCodeInput
             // 
@@ -450,6 +703,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel3.Controls.Add(this.cancleBtn);
             this.panel3.Controls.Add(this.saveChangeBtn);
             this.panel3.Controls.Add(this.productDescriptionInfo);
             this.panel3.Controls.Add(this.unavailableRadioInfo);
@@ -473,6 +727,18 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(673, 170);
             this.panel3.TabIndex = 7;
+            // 
+            // cancleBtn
+            // 
+            this.cancleBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cancleBtn.Location = new System.Drawing.Point(274, 124);
+            this.cancleBtn.Name = "cancleBtn";
+            this.cancleBtn.Size = new System.Drawing.Size(101, 31);
+            this.cancleBtn.TabIndex = 27;
+            this.cancleBtn.Text = "Cancel";
+            this.cancleBtn.UseVisualStyleBackColor = true;
+            this.cancleBtn.Visible = false;
+            this.cancleBtn.Click += new System.EventHandler(this.cancleBtn_Click);
             // 
             // saveChangeBtn
             // 
@@ -525,7 +791,7 @@
             // 
             this.totalPriceInfo.AutoSize = true;
             this.totalPriceInfo.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.totalPriceInfo.Location = new System.Drawing.Point(189, 123);
+            this.totalPriceInfo.Location = new System.Drawing.Point(174, 127);
             this.totalPriceInfo.Name = "totalPriceInfo";
             this.totalPriceInfo.Size = new System.Drawing.Size(49, 28);
             this.totalPriceInfo.TabIndex = 22;
@@ -536,7 +802,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.Location = new System.Drawing.Point(68, 123);
+            this.label10.Location = new System.Drawing.Point(53, 127);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(115, 28);
             this.label10.TabIndex = 21;
@@ -763,6 +1029,8 @@
             // 
             // agentsView
             // 
+            this.agentsView.AllowUserToAddRows = false;
+            this.agentsView.AllowUserToDeleteRows = false;
             this.agentsView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.agentsView.Location = new System.Drawing.Point(9, 67);
             this.agentsView.Name = "agentsView";
@@ -803,6 +1071,7 @@
             // 
             // agentStatusSearch
             // 
+            this.agentStatusSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.agentStatusSearch.FormattingEnabled = true;
             this.agentStatusSearch.Items.AddRange(new object[] {
             "Status",
@@ -1005,7 +1274,7 @@
             // panel14
             // 
             this.panel14.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel14.Controls.Add(this.comboBox1);
+            this.panel14.Controls.Add(this.orderStatusSearch);
             this.panel14.Controls.Add(this.orderAgentIdSearch);
             this.panel14.Controls.Add(this.orderIdSearch);
             this.panel14.Controls.Add(this.label21);
@@ -1015,13 +1284,19 @@
             this.panel14.Size = new System.Drawing.Size(367, 322);
             this.panel14.TabIndex = 4;
             // 
-            // comboBox1
+            // orderStatusSearch
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(249, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(109, 23);
-            this.comboBox1.TabIndex = 5;
+            this.orderStatusSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.orderStatusSearch.FormattingEnabled = true;
+            this.orderStatusSearch.Items.AddRange(new object[] {
+            "Search by status...",
+            "Confirmed",
+            "Unconfirm"});
+            this.orderStatusSearch.Location = new System.Drawing.Point(249, 34);
+            this.orderStatusSearch.Name = "orderStatusSearch";
+            this.orderStatusSearch.Size = new System.Drawing.Size(109, 23);
+            this.orderStatusSearch.TabIndex = 5;
+            this.orderStatusSearch.SelectedIndexChanged += new System.EventHandler(this.orderStatusSearch_SelectedIndexChanged);
             // 
             // orderAgentIdSearch
             // 
@@ -1040,6 +1315,7 @@
             this.orderIdSearch.Size = new System.Drawing.Size(106, 23);
             this.orderIdSearch.TabIndex = 3;
             this.orderIdSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            this.orderIdSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.orderIdSearch_KeyDown);
             // 
             // label21
             // 
@@ -1178,6 +1454,8 @@
             // 
             // buyProductView
             // 
+            this.buyProductView.AllowUserToAddRows = false;
+            this.buyProductView.AllowUserToDeleteRows = false;
             this.buyProductView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.buyProductView.Location = new System.Drawing.Point(3, 79);
             this.buyProductView.Name = "buyProductView";
@@ -1365,11 +1643,22 @@
             // panel17
             // 
             this.panel17.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel17.Controls.Add(this.label30);
             this.panel17.Controls.Add(this.orderHistoryView);
             this.panel17.Location = new System.Drawing.Point(6, 390);
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(978, 605);
             this.panel17.TabIndex = 4;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label30.Location = new System.Drawing.Point(415, 15);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(169, 32);
+            this.label30.TabIndex = 1;
+            this.label30.Text = "Order Histoty";
             // 
             // orderHistoryView
             // 
@@ -1383,11 +1672,22 @@
             // panel16
             // 
             this.panel16.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel16.Controls.Add(this.label32);
             this.panel16.Controls.Add(this.agentHistoryView);
             this.panel16.Location = new System.Drawing.Point(500, 3);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(482, 370);
             this.panel16.TabIndex = 3;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label32.Location = new System.Drawing.Point(162, 23);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(172, 32);
+            this.label32.TabIndex = 2;
+            this.label32.Text = "Agent Histoty";
             // 
             // agentHistoryView
             // 
@@ -1401,11 +1701,22 @@
             // panel15
             // 
             this.panel15.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel15.Controls.Add(this.label31);
             this.panel15.Controls.Add(this.productHistoryView);
             this.panel15.Location = new System.Drawing.Point(5, 3);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(482, 370);
             this.panel15.TabIndex = 1;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label31.Location = new System.Drawing.Point(138, 23);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(194, 32);
+            this.label31.TabIndex = 2;
+            this.label31.Text = "Product Histoty";
             // 
             // productHistoryView
             // 
@@ -1424,14 +1735,28 @@
             this.Controls.Add(this.pageControl);
             this.Controls.Add(this.panel1);
             this.Name = "Product";
-            this.Text = "Form1";
+            this.Text = "Supply Chain Management";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pageControl.ResumeLayout(false);
+            this.homePage.ResumeLayout(false);
+            this.homePage.PerformLayout();
+            this.panel19.ResumeLayout(false);
+            this.panel19.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel22.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.topAgentView)).EndInit();
+            this.panel18.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.topProductView)).EndInit();
             this.productPage.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productView)).EndInit();
@@ -1465,10 +1790,13 @@
             this.panel7.PerformLayout();
             this.historyPage.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderHistoryView)).EndInit();
             this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.agentHistoryView)).EndInit();
             this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productHistoryView)).EndInit();
             this.ResumeLayout(false);
 
@@ -1489,7 +1817,7 @@
         private TabPage productPage;
         private Panel panel2;
         private Panel panel6;
-        private MonthCalendar monthCalendar1;
+        private MonthCalendar productSearchByDate;
         private Panel panel5;
         private Button deleteProductBtn;
         private Button resetProductBtn;
@@ -1568,7 +1896,7 @@
         private Label label20;
         private DataGridView orderView;
         private Button BillingFormBtn;
-        private ComboBox comboBox1;
+        private ComboBox orderStatusSearch;
         private TextBox orderAgentIdSearch;
         private TextBox orderIdSearch;
         private Label label21;
@@ -1600,5 +1928,28 @@
         private DataGridView agentHistoryView;
         private Panel panel15;
         private DataGridView productHistoryView;
+        private Button cancleBtn;
+        private Panel panel22;
+        private Panel panel18;
+        private DataGridView topAgentView;
+        private DataGridView topProductView;
+        private Label label28;
+        private Panel panel19;
+        private Label label29;
+        private TextBox productDateInput;
+        private Label label30;
+        private Label label32;
+        private Label label31;
+        private PictureBox pictureBox1;
+        private Label day;
+        private Label label34;
+        private Label label33;
+        private Label monthRevenue;
+        private Label productSold;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private Label label35;
+        private Label label36;
+        private Button exitBtn;
     }
 }

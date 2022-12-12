@@ -57,16 +57,14 @@ namespace Supply_chain_management_WF
            ((SELECT MAX(Id) FROM Product) + 1,'" + productNameInput.Text+"','"+productUnitDropDown.Text+"','"+productQuantityInput.Value+"','"+productDescriptionInput.Text+"','"+productUnitPriceInput.Value+"','"+productUnitPriceInput.Value * productQuantityInput.Value+"','"+status+"')",con);
             com.ExecuteNonQuery();
             con.Close();
+            updateHistory.updateProductHistory("","Product","Create","", productNameInput.Text,"","");
+            MessageBox.Show("Add new product success");
             this.Hide();
-            Product product = new Product();
-            product.Show();
         }
 
         private void cancleAddingBtn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Product product = new Product();
-            product.Show();
         }
 
         private void resetAddingBtn_Click(object sender, EventArgs e)

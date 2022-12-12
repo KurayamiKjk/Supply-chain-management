@@ -1,0 +1,90 @@
+﻿@model Supply_chain_management_WebApp.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDocument)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDocument)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductUnitPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductUnitPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
